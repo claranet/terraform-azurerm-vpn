@@ -1,4 +1,4 @@
-# Unreleased
+# v7.2.1 - 2022-12-14
 
 Fixed
   * AZ-908: Bump subnet module to v6.1.0
