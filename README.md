@@ -101,7 +101,7 @@ module "vpn_gw" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| subnet\_gateway | claranet/subnet/azurerm | 6.0.0 |
+| subnet\_gateway | claranet/subnet/azurerm | 6.1.0 |
 
 ## Resources
 
