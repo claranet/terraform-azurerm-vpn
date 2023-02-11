@@ -162,7 +162,7 @@ variable "vpn_connections" {
 variable "vpn_client_configuration" {
   description = "VPN client configuration using Azure AD authorization."
   type = object({
-    address_space                    = optional(list(string)) # The address space out of which IP addresses for vpn clients will be taken
+    address_space                    = list(string) # The address space out of which IP addresses for vpn clients will be taken
     aad_tenant                       = optional(string)       # AzureAD Tenant URL
     aad_audience                     = optional(string)       # The client id of the Azure VPN application
     aad_issuer                       = optional(string)       # The STS url for your tenant
