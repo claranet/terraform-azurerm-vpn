@@ -104,15 +104,39 @@ resource "azurerm_virtual_network_gateway_connection" "virtual_network_gateway_c
   location            = var.location
   resource_group_name = var.resource_group_name
 
-  type                       = "IPsec"
-  virtual_network_gateway_id = azurerm_virtual_network_gateway.public_virtual_network_gateway.id
-  local_network_gateway_id   = azurerm_local_network_gateway.local_network_gateway[each.key].id
+  type                           = "IPsec"
+  virtual_network_gateway_id     = azurerm_virtual_network_gateway.public_virtual_network_gateway.id
+  local_network_gateway_id       = azurerm_local_network_gateway.local_network_gateway[each.key].id
+  local_azure_ip_address_enabled = each.value.local_azure_ip_address_enabled
 
   shared_key = coalesce(each.value.shared_key, random_password.vpn_ipsec_shared_key[each.key].result)
 
+  connection_mode     = each.value.connection_mode
+  connection_protocol = each.value.connection_protocol
+  dpd_timeout_seconds = each.value.dpd_timeout_seconds
+
+  enable_bgp = each.value.enable_bgp
+
+  dynamic "custom_bgp_addresses" {
+    for_each = each.value.custom_bgp_addresses == null ? [] : ["enabled"]
+    content {
+      primary   = each.value.custom_bgp_addresses.primary
+      secondary = each.value.custom_bgp_addresses.secondary
+    }
+  }
+
+  use_policy_based_traffic_selectors = each.value.use_policy_based_traffic_selectors
+
+  dynamic "traffic_selector_policy" {
+    for_each = each.value.traffic_selector_policy
+    content {
+      local_address_cidrs  = traffic_selector_policy.value.local_address_cidrs
+      remote_address_cidrs = traffic_selector_policy.value.remote_address_cidrs
+    }
+  }
+
   tags = merge(local.default_tags, var.extra_tags, each.value.extra_tags)
 
-  dpd_timeout_seconds = each.value.dpd_timeout_seconds
 
   dynamic "ipsec_policy" {
     for_each = each.value.ipsec_policy != null ? ["enabled"] : []
@@ -131,6 +155,7 @@ resource "azurerm_virtual_network_gateway_connection" "virtual_network_gateway_c
 
   egress_nat_rule_ids  = each.value.egress_nat_rule_ids
   ingress_nat_rule_ids = each.value.ingress_nat_rule_ids
+
 }
 
 resource "random_password" "vpn_ipsec_shared_key" {

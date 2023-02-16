@@ -134,12 +134,28 @@ variable "vpn_connections" {
     local_gw_custom_name = optional(string) # Generated if not set
     vpn_gw_custom_name   = optional(string) # Generated if not set
 
-    local_gateway_address        = optional(string)
-    local_gateway_fqdn           = optional(string)
-    local_gateway_address_spaces = optional(list(string), []) # CIDR Format
+    local_gateway_address          = optional(string)
+    local_gateway_fqdn             = optional(string)
+    local_gateway_address_spaces   = optional(list(string), []) # CIDR Format
+    local_azure_ip_address_enabled = optional(bool, false)
 
-    shared_key          = optional(string) # Generated if not set
-    dpd_timeout_seconds = optional(number)
+    shared_key = optional(string) # Generated if not set
+
+    connection_mode     = optional(string, "Default")
+    connection_protocol = optional(string, "IKEv2")
+    dpd_timeout_seconds = optional(number, 45)
+
+    enable_bgp = optional(bool, false)
+    custom_bgp_addresses = optional(object({
+      primary   = string
+      secondary = string
+    }))
+
+    use_policy_based_traffic_selectors = optional(bool, false)
+    traffic_selector_policy = optional(list(object({
+      local_address_cidrs  = list(string)
+      remote_address_cidrs = list(string)
+    })), [])
 
     egress_nat_rule_ids  = optional(list(string))
     ingress_nat_rule_ids = optional(list(string))
