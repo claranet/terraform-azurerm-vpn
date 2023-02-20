@@ -2,6 +2,7 @@
 
 Added
   * [GH-2](https://github.com/claranet/terraform-azurerm-vpn/pull/2): Add certificate authentication capability
+  * AZ-1009: Add some missing `vpn_connections` related parameters
 
 # v7.2.1 - 2022-12-14
 
