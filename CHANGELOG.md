@@ -1,4 +1,4 @@
-# Unreleased
+# v7.3.0 - 2023-02-20
 
 Added
   * [GH-2](https://github.com/claranet/terraform-azurerm-vpn/pull/2): Add certificate authentication capability
