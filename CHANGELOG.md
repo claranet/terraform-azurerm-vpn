@@ -1,3 +1,8 @@
+# Unreleased
+
+Added
+  * AZ-1010: Add diagnostic-settings configuration
+
 # v7.3.0 - 2023-02-20
 
 Added

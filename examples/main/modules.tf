@@ -29,6 +29,23 @@ module "azure_network_vnet" {
   vnet_cidr           = ["10.10.1.0/16"]
 }
 
+module "logs" {
+  source  = "claranet/run/azurerm//modules/logs"
+  version = "x.x.x"
+
+  client_name    = var.client_name
+  location       = module.azure_region.location
+  location_short = module.azure_region.location_short
+  environment    = var.environment
+  stack          = var.stack
+
+  resource_group_name = module.rg.resource_group_name
+
+  extra_tags = {
+    foo = "bar"
+  }
+}
+
 module "vpn_gw" {
   source  = "claranet/vpn/azurerm"
   version = "x.x.x"
@@ -55,6 +72,10 @@ module "vpn_gw" {
     }
   ]
 
+  logs_destinations_ids = [
+    module.logs.log_analytics_workspace_id,
+    module.logs.logs_storage_account_id
+  ]
   extra_tags = {
     foo = "bar"
   }
