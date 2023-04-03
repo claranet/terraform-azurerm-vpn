@@ -111,6 +111,7 @@ module "vpn_gw" {
     module.logs.log_analytics_workspace_id,
     module.logs.logs_storage_account_id
   ]
+
   extra_tags = {
     foo = "bar"
   }
