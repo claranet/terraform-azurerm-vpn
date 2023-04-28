@@ -130,7 +130,7 @@ module "vpn_gw" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| diagnostics | claranet/diagnostic-settings/azurerm | ~> 6.3.0 |
+| diagnostics | claranet/diagnostic-settings/azurerm | ~> 6.4.1 |
 | subnet\_gateway | claranet/subnet/azurerm | 6.1.0 |
 
 ## Resources

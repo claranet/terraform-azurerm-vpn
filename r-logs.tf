@@ -1,6 +1,6 @@
 module "diagnostics" {
   source  = "claranet/diagnostic-settings/azurerm"
-  version = "~> 6.3.0"
+  version = "~> 6.4.1"
 
   resource_id = azurerm_virtual_network_gateway.public_virtual_network_gateway.id
 
