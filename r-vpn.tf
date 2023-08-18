@@ -1,5 +1,5 @@
 resource "azurerm_public_ip" "virtual_gateway_pubip" {
-  for_each = toset([for x in range(1, local.vpn_gw_public_ip_number + 1 ) : tostring(x)])
+  for_each = toset([for x in range(1, local.vpn_gw_public_ip_number + 1) : tostring(x)])
   name     = var.vpn_gw_public_ip_custom_name == "" ? "${local.gw_pub_ip_name}-0${each.key}" : var.vpn_gw_public_ip_custom_name
 
   location            = var.location
