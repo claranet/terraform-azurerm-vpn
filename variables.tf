@@ -184,8 +184,8 @@ variable "vpn_client_configuration" {
     aad_issuer                  = optional(string) # The STS url for your tenant
     root_certificate_enabled    = optional(bool)
     revoked_certificate_enabled = optional(bool)
-    root_certificate            = optional(map(string))
-    revoked_certificate         = optional(map(string))
+    root_certificate            = optional(list(map(string)))
+    revoked_certificate         = optional(list(map(string)))
     radius_server_address       = optional(string)
     radius_server_secret        = optional(string)
     vpn_auth_types              = optional(list(string), ["AAD"])
