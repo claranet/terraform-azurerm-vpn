@@ -158,7 +158,7 @@ resource "azurerm_virtual_network_gateway_connection" "virtual_network_gateway_c
 }
 
 resource "random_password" "vpn_ipsec_shared_key" {
-  for_each ={ for c in var.vpn_connections : c.name => c if c.shared_key == null }
+  for_each = { for c in var.vpn_connections : c.name => c if c.shared_key == null }
   length   = 32
   special  = false
 }
