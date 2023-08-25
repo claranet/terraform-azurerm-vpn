@@ -59,8 +59,8 @@ resource "azurerm_virtual_network_gateway" "public_virtual_network_gateway" {
       dynamic "root_certificate" {
         for_each = vpn.value.root_certificate_enabled ? vpn.value.root_certificate : {}
         content {
-          name             = vpn.value.root_certificate.name
-          public_cert_data = vpn.value.root_certificate.public_cert_data
+          name             = root_certificate.value.name
+          public_cert_data = root_certificate.value.public_cert_data
         }
       }
 
