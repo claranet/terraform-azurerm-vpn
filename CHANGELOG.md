@@ -4,6 +4,10 @@ Changed
  * AZ-1150: Add Conditionnal share key generation 
 
 # v7.4.0 - 2023-02-24
+Changed
+  * Add mutliple root certificate support  
+     
+# v7.4.0 - 2023-02-24
 
 Added
   * AZ-1010: Add diagnostic-settings configuration
