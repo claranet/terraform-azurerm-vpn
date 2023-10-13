@@ -57,7 +57,7 @@ resource "azurerm_virtual_network_gateway" "public_virtual_network_gateway" {
       aad_issuer    = vpn.value.aad_issuer
 
       dynamic "root_certificate" {
-        for_each = vpn.value.root_certificate_enabled ? vpn.value.root_certificate : {}
+        for_each = vpn.value.root_certificate_enabled ? vpn.value.root_certificate : []
         content {
           name             = root_certificate.value.name
           public_cert_data = root_certificate.value.public_cert_data
@@ -65,7 +65,7 @@ resource "azurerm_virtual_network_gateway" "public_virtual_network_gateway" {
       }
 
       dynamic "revoked_certificate" {
-        for_each = vpn.value.revoked_certificate_enabled ? vpn.value.revoked_certificate : {}
+        for_each = vpn.value.revoked_certificate_enabled ? vpn.value.revoked_certificate : []
         content {
           name       = vpn.value.revoked_certificate.name
           thumbprint = vpn.value.revoked_certificate.public_cert_data
