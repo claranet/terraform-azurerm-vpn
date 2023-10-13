@@ -1,5 +1,8 @@
 # Unreleased
 
+Breaking
+  * AZ-1134: Rework vpn_gw_pulic_ip_custom_name
+
 Changed
   * AZ-1150: Add Conditionnal share key generation
   * AZ-1146: Add support for multiple root certificates

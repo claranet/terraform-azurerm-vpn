@@ -1,6 +1,6 @@
 resource "azurerm_public_ip" "virtual_gateway_pubip" {
   for_each = toset([for x in range(1, local.vpn_gw_public_ip_number + 1) : tostring(x)])
-  name     = var.vpn_gw_public_ip_custom_name == "" ? "${local.gw_pub_ip_name}-0${each.key}" : var.vpn_gw_public_ip_custom_name
+  name     = try(var.vpn_gw_public_ip_custom_name[each.key - 1], "${data.azurecaf_name.gw_pub_ip.result}-0${each.key}")
 
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -10,6 +10,13 @@ resource "azurerm_public_ip" "virtual_gateway_pubip" {
   zones             = var.vpn_gw_public_ip_zones
 
   tags = merge(local.default_tags, var.extra_tags)
+
+  lifecycle {
+    precondition {
+      condition     = length(var.vpn_gw_public_ip_custom_name) == local.vpn_gw_public_ip_number || length(var.vpn_gw_public_ip_custom_name) == 0
+      error_message = "You must have one custom name per public IP."
+    }
+  }
 }
 
 resource "azurerm_virtual_network_gateway" "public_virtual_network_gateway" {

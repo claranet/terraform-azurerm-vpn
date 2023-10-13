@@ -154,18 +154,18 @@ module "vpn_gw" {
 | additional\_routes\_to\_advertise | Additional routes reserved for this virtual network in CIDR notation. | `list(string)` | `null` | no |
 | client\_name | Client name/account used in naming. | `string` | n/a | yes |
 | custom\_diagnostic\_settings\_name | Custom name of the diagnostics settings, name will be 'default' if not set. | `string` | `"default"` | no |
-| custom\_name | Custom VPN Gateway name, generated if not set | `string` | `""` | no |
-| default\_tags\_enabled | Option to enable or disable default tags | `bool` | `true` | no |
+| custom\_name | Custom VPN Gateway name, generated if not set. | `string` | `""` | no |
+| default\_tags\_enabled | Option to enable or disable default tags. | `bool` | `true` | no |
 | environment | Project environment. | `string` | n/a | yes |
-| extra\_tags | Additional tags to associate with your VPN Gateway | `map(string)` | `{}` | no |
+| extra\_tags | Additional tags to associate with your VPN Gateway. | `map(string)` | `{}` | no |
 | location | Azure region to use. | `string` | n/a | yes |
 | location\_short | Short string for Azure location. | `string` | n/a | yes |
 | logs\_categories | Log categories to send to destinations. | `list(string)` | `null` | no |
 | logs\_destinations\_ids | List of destination resources IDs for logs diagnostic destination.<br>Can be `Storage Account`, `Log Analytics Workspace` and `Event Hub`. No more than one of each can be set.<br>If you want to specify an Azure EventHub to send logs and metrics to, you need to provide a formated string with both the EventHub Namespace authorization send ID and the EventHub name (name of the queue to use in the Namespace) separated by the `|` character. | `list(string)` | n/a | yes |
 | logs\_metrics\_categories | Metrics categories to send to destinations. | `list(string)` | `null` | no |
 | logs\_retention\_days | Number of days to keep logs on storage account. | `number` | `30` | no |
-| name\_prefix | Optional prefix for the generated name | `string` | `""` | no |
-| name\_suffix | Optional suffix for the generated name | `string` | `""` | no |
+| name\_prefix | Optional prefix for the generated name. | `string` | `""` | no |
+| name\_suffix | Optional suffix for the generated name. | `string` | `""` | no |
 | network\_resource\_group\_name | VNet and Subnet Resource group name. To use only if you need to have a dedicated Resource Group for all VPN GW resources. (set via `resource_group_name` variable.) | `string` | `""` | no |
 | resource\_group\_name | Name of the resource group. | `string` | n/a | yes |
 | stack | Project stack name. | `string` | n/a | yes |
@@ -178,9 +178,9 @@ module "vpn_gw" {
 | vpn\_gw\_active\_active | If true, an active-active Virtual Network Gateway will be created. An active-active gateway requires a `HighPerformance` or an `UltraPerformance` SKU. If false, an active-standby gateway will be created. | `bool` | `false` | no |
 | vpn\_gw\_enable\_bgp | If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to false. | `bool` | `false` | no |
 | vpn\_gw\_generation | Configuration of the generation of the virtual network gateway. Valid options are `Generation1`, `Generation2` or `None` | `string` | `"Generation2"` | no |
-| vpn\_gw\_ipconfig\_custom\_name | VPN GW IP Config resource custom name | `string` | `""` | no |
+| vpn\_gw\_ipconfig\_custom\_name | VPN GW IP Config resource custom name. | `string` | `""` | no |
 | vpn\_gw\_public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Dynamic"` | no |
-| vpn\_gw\_public\_ip\_custom\_name | VPN GW Public IP resource custom name | `string` | `""` | no |
+| vpn\_gw\_public\_ip\_custom\_name | List of VPN GW Public IP resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
 | vpn\_gw\_public\_ip\_number | Number of Public IPs to allocate and associated to the Gateway. By default only 1. Maximum is 3. | `number` | `1` | no |
 | vpn\_gw\_public\_ip\_sku | The SKU of the Public IP. Accepted values are `Basic` and `Standard`. | `string` | `"Basic"` | no |
 | vpn\_gw\_public\_ip\_zones | Public IP zones to configure. | `list(number)` | <pre>[<br>  1,<br>  2,<br>  3<br>]</pre> | no |
