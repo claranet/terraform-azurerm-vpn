@@ -1,3 +1,8 @@
+# Unreleased
+
+Changed 
+ * AZ-1150: Add Conditionnal share key generation 
+
 # v7.4.0 - 2023-02-24
 
 Added
