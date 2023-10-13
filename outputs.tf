@@ -40,6 +40,6 @@ output "vpn_connection_ids" {
 
 output "vpn_shared_keys" {
   description = "Shared Keys used for VPN connections."
-  value       = { for v in var.vpn_connections : v.name => coalesce(v.shared_key, random_password.vpn_ipsec_shared_key[v.name].result) }
+  value       = { for v in var.vpn_connections : v.name => try(random_password.vpn_ipsec_shared_key[v.name].result, v.shared_key) }
   sensitive   = true
 }
