@@ -180,7 +180,7 @@ module "vpn_gw" {
 | vpn\_gw\_generation | Configuration of the generation of the virtual network gateway. Valid options are `Generation1`, `Generation2` or `None` | `string` | `"Generation2"` | no |
 | vpn\_gw\_ipconfig\_custom\_name | VPN GW IP Config resource custom name. | `string` | `""` | no |
 | vpn\_gw\_public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Dynamic"` | no |
-| vpn\_gw\_public\_ip\_custom\_name | List of VPN GW Public IP resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
+| vpn\_gw\_public\_ip\_custom\_names | List of VPN GW Public IP resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
 | vpn\_gw\_public\_ip\_number | Number of Public IPs to allocate and associated to the Gateway. By default only 1. Maximum is 3. | `number` | `1` | no |
 | vpn\_gw\_public\_ip\_sku | The SKU of the Public IP. Accepted values are `Basic` and `Standard`. | `string` | `"Basic"` | no |
 | vpn\_gw\_public\_ip\_zones | Public IP zones to configure. | `list(number)` | <pre>[<br>  1,<br>  2,<br>  3<br>]</pre> | no |

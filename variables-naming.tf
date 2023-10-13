@@ -30,8 +30,9 @@ variable "vpn_gw_ipconfig_custom_name" {
   default     = ""
 }
 
-variable "vpn_gw_public_ip_custom_name" {
+variable "vpn_gw_public_ip_custom_names" {
   description = "List of VPN GW Public IP resource custom name. One per IP on the gateway."
   type        = list(string)
   default     = []
+  nullable    = false
 }
