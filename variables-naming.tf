@@ -24,10 +24,11 @@ variable "custom_name" {
   default     = ""
 }
 
-variable "vpn_gw_ipconfig_custom_name" {
-  description = "VPN GW IP Config resource custom name."
-  type        = string
-  default     = ""
+variable "vpn_gw_ipconfig_custom_names" {
+  description = "List of VPN GW IP Config resource custom name. One per IP on the gateway."
+  type        = list(string)
+  default     = []
+  nullable    = false
 }
 
 variable "vpn_gw_public_ip_custom_names" {

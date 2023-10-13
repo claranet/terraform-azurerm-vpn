@@ -178,7 +178,7 @@ module "vpn_gw" {
 | vpn\_gw\_active\_active | If true, an active-active Virtual Network Gateway will be created. An active-active gateway requires a `HighPerformance` or an `UltraPerformance` SKU. If false, an active-standby gateway will be created. | `bool` | `false` | no |
 | vpn\_gw\_enable\_bgp | If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to false. | `bool` | `false` | no |
 | vpn\_gw\_generation | Configuration of the generation of the virtual network gateway. Valid options are `Generation1`, `Generation2` or `None` | `string` | `"Generation2"` | no |
-| vpn\_gw\_ipconfig\_custom\_name | VPN GW IP Config resource custom name. | `string` | `""` | no |
+| vpn\_gw\_ipconfig\_custom\_names | List of VPN GW IP Config resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
 | vpn\_gw\_public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Dynamic"` | no |
 | vpn\_gw\_public\_ip\_custom\_names | List of VPN GW Public IP resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
 | vpn\_gw\_public\_ip\_number | Number of Public IPs to allocate and associated to the Gateway. By default only 1. Maximum is 3. | `number` | `1` | no |

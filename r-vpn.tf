@@ -1,6 +1,6 @@
 resource "azurerm_public_ip" "virtual_gateway_pubip" {
   for_each = toset([for x in range(1, local.vpn_gw_public_ip_number + 1) : tostring(x)])
-  name     = try(var.vpn_gw_public_ip_custom_name[each.key - 1], "${data.azurecaf_name.gw_pub_ip.result}-0${each.key}")
+  name     = try(var.vpn_gw_public_ip_custom_names[each.key - 1], format("%s-0%s", data.azurecaf_name.gw_pub_ip.result, each.key))
 
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -13,8 +13,8 @@ resource "azurerm_public_ip" "virtual_gateway_pubip" {
 
   lifecycle {
     precondition {
-      condition     = length(var.vpn_gw_public_ip_custom_name) == local.vpn_gw_public_ip_number || length(var.vpn_gw_public_ip_custom_name) == 0
-      error_message = "You must have one custom name per public IP."
+      condition     = length(var.vpn_gw_public_ip_custom_names) == local.vpn_gw_public_ip_number || length(var.vpn_gw_public_ip_custom_names) == 0
+      error_message = "You must have one public IP custom name value per public IP."
     }
   }
 }
@@ -39,7 +39,7 @@ resource "azurerm_virtual_network_gateway" "public_virtual_network_gateway" {
     for_each = toset([for x in range(1, local.vpn_gw_public_ip_number + 1) : tostring(x)])
 
     content {
-      name                 = var.vpn_gw_ipconfig_custom_name == "" ? "${local.vpn_gw_ipconfig_name}-0${ip_configuration.key}" : var.vpn_gw_ipconfig_custom_name
+      name                 = try(var.vpn_gw_ipconfig_custom_names[ip_configuration.key - 1], format("%s-0%s", local.vpn_gw_ipconfig_name, ip_configuration.key))
       public_ip_address_id = azurerm_public_ip.virtual_gateway_pubip[ip_configuration.key].id
       subnet_id            = var.subnet_gateway_cidr != null ? module.subnet_gateway["subnet_gw"].subnet_id : var.subnet_id
     }
@@ -87,6 +87,13 @@ resource "azurerm_virtual_network_gateway" "public_virtual_network_gateway" {
   }
 
   tags = merge(local.default_tags, var.extra_tags)
+
+  lifecycle {
+    precondition {
+      condition     = length(var.vpn_gw_ipconfig_custom_names) == local.vpn_gw_public_ip_number || length(var.vpn_gw_public_ip_custom_names) == 0
+      error_message = "You must have one ipconfig custom name value per public IP."
+    }
+  }
 }
 
 resource "azurerm_local_network_gateway" "local_network_gateway" {
