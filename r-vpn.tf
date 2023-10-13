@@ -109,7 +109,7 @@ resource "azurerm_virtual_network_gateway_connection" "virtual_network_gateway_c
   local_network_gateway_id       = azurerm_local_network_gateway.local_network_gateway[each.key].id
   local_azure_ip_address_enabled = each.value.local_azure_ip_address_enabled
 
-  shared_key = try(random_password.vpn_ipsec_shared_key[each.key].result, each.value.shared_key)
+  shared_key = each.value.shared_key == null ? try(random_password.vpn_ipsec_shared_key[each.key].result, null) : each.value.shared_key
 
   connection_mode     = each.value.connection_mode
   connection_protocol = each.value.connection_protocol
