@@ -57,15 +57,15 @@ resource "azurerm_virtual_network_gateway" "public_virtual_network_gateway" {
       aad_issuer    = vpn.value.aad_issuer
 
       dynamic "root_certificate" {
-        for_each = vpn.value.root_certificate_enabled ? vpn.value.root_certificate : {}
+        for_each = vpn.value.root_certificate
         content {
-          name             = vpn.value.root_certificate.name
-          public_cert_data = vpn.value.root_certificate.public_cert_data
+          name             = root_certificate.value.name
+          public_cert_data = root_certificate.value.public_cert_data
         }
       }
 
       dynamic "revoked_certificate" {
-        for_each = vpn.value.revoked_certificate_enabled ? vpn.value.revoked_certificate : {}
+        for_each = vpn.value.revoked_certificate
         content {
           name       = vpn.value.revoked_certificate.name
           thumbprint = vpn.value.revoked_certificate.public_cert_data
@@ -109,7 +109,7 @@ resource "azurerm_virtual_network_gateway_connection" "virtual_network_gateway_c
   local_network_gateway_id       = azurerm_local_network_gateway.local_network_gateway[each.key].id
   local_azure_ip_address_enabled = each.value.local_azure_ip_address_enabled
 
-  shared_key = coalesce(each.value.shared_key, random_password.vpn_ipsec_shared_key[each.key].result)
+  shared_key = each.value.shared_key == null ? try(random_password.vpn_ipsec_shared_key[each.key].result, null) : each.value.shared_key
 
   connection_mode     = each.value.connection_mode
   connection_protocol = each.value.connection_protocol

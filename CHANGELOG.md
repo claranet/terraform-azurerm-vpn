@@ -1,7 +1,8 @@
 # Unreleased
 
-Changed 
- * AZ-1150: Add Conditionnal share key generation 
+Changed
+  * AZ-1150: Add Conditionnal share key generation
+  * AZ-1146: Add support for multiple root certificates
 
 # v7.4.0 - 2023-02-24
 

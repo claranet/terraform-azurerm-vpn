@@ -178,18 +178,22 @@ variable "vpn_connections" {
 variable "vpn_client_configuration" {
   description = "VPN client configuration authorizations."
   type = object({
-    address_space               = list(string)     # The address space out of which IP addresses for vpn clients will be taken
-    aad_tenant                  = optional(string) # AzureAD Tenant URL
-    aad_audience                = optional(string) # The client id of the Azure VPN application
-    aad_issuer                  = optional(string) # The STS url for your tenant
-    root_certificate_enabled    = optional(bool)
-    revoked_certificate_enabled = optional(bool)
-    root_certificate            = optional(map(string))
-    revoked_certificate         = optional(map(string))
-    radius_server_address       = optional(string)
-    radius_server_secret        = optional(string)
-    vpn_auth_types              = optional(list(string), ["AAD"])
-    vpn_client_protocols        = optional(list(string), ["OpenVPN"])
+    address_space = list(string)     # The address space out of which IP addresses for vpn clients will be taken
+    aad_tenant    = optional(string) # AzureAD Tenant URL
+    aad_audience  = optional(string) # The client id of the Azure VPN application
+    aad_issuer    = optional(string) # The STS url for your tenant
+    root_certificate = optional(list(object({
+      name             = string
+      public_cert_data = string
+    })), [])
+    revoked_certificate = optional(list(object({
+      name             = string
+      public_cert_data = string
+    })), [])
+    radius_server_address = optional(string)
+    radius_server_secret  = optional(string)
+    vpn_auth_types        = optional(list(string), ["AAD"])
+    vpn_client_protocols  = optional(list(string), ["OpenVPN"])
   })
   default = null
 }
