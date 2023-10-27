@@ -1,4 +1,4 @@
-# Unreleased
+# v7.5.0 - 2023-10-27
 
 Breaking
   * AZ-1134: Rework vpn_gw_pulic_ip_custom_name
