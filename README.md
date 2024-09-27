@@ -142,10 +142,10 @@ module "vpn_gw" {
 | [azurerm_virtual_network_gateway.public_virtual_network_gateway](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway) | resource |
 | [azurerm_virtual_network_gateway_connection.virtual_network_gateway_connection](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway_connection) | resource |
 | [random_password.vpn_ipsec_shared_key](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
-| [azurecaf_name.gw_pub_ip](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/data-sources/name) | data source |
-| [azurecaf_name.local_network_gateway](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/data-sources/name) | data source |
-| [azurecaf_name.vnet_gw](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/data-sources/name) | data source |
-| [azurecaf_name.vpn_gw_connection](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/data-sources/name) | data source |
+| [azurecaf_name.gw_pub_ip](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
+| [azurecaf_name.local_network_gateway](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
+| [azurecaf_name.vnet_gw](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
+| [azurecaf_name.vpn_gw_connection](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
 
 ## Inputs
 
