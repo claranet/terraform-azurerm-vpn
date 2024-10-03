@@ -1,3 +1,9 @@
+## 7.6.0 (2024-10-03)
+
+### Features
+
+* use Claranet "azurecaf" provider fec4add
+
 ## 7.5.1 (2024-10-01)
 
 ### Documentation
