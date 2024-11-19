@@ -1,6 +1,6 @@
 module "subnet_gateway" {
   source  = "claranet/subnet/azurerm"
-  version = "7.2.0"
+  version = "8.0.0"
 
   for_each = toset(var.subnet_gateway_cidr != null ? ["subnet_gw"] : [])
 
