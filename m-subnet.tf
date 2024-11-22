@@ -5,9 +5,9 @@ moved {
 
 module "subnet_gateway" {
   source  = "claranet/subnet/azurerm"
-  version = "~> 8.0"
+  version = "~> 8.0.0"
 
-  count = var.subnet_gateway_cidr != null ? 1 : 0
+  count = var.subnet_cidr != null ? 1 : 0
 
   environment    = var.environment
   location_short = var.location_short
@@ -17,7 +17,7 @@ module "subnet_gateway" {
   resource_group_name  = coalesce(var.network_resource_group_name, var.resource_group_name)
   virtual_network_name = var.virtual_network_name
 
-  cidrs = [var.subnet_gateway_cidr]
+  cidrs = [var.subnet_cidr]
 
   # Fixed name, imposed by Azure
   custom_name = "GatewaySubnet"

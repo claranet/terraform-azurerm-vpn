@@ -1,3 +1,3 @@
 locals {
-  vpn_gw_public_ip_number = var.vpn_gw_active_active && var.vpn_gw_public_ip_number < 2 ? 2 : var.vpn_gw_public_ip_number
+  public_ip_count = var.active_active && var.public_ip_count < 2 ? 2 : var.public_ip_count
 }

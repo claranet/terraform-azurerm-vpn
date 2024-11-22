@@ -13,7 +13,7 @@ output "name" {
   value       = azurerm_virtual_network_gateway.main.name
 }
 
-output "resource_diagnostics" {
+output "module_diagnostics" {
   description = "Diagnostics settings module outputs."
   value       = module.diagnostics
 }
@@ -33,8 +33,8 @@ output "public_ip_adresses" {
   value       = [for pip in azurerm_public_ip.main : pip.ip_address]
 }
 
-output "public_ip_resources" {
-  description = "Azure VPN Gateway public IPs resources."
+output "resource_public_ip" {
+  description = "Azure VPN Gateway Public IP resource object."
   value       = azurerm_public_ip.main
 }
 

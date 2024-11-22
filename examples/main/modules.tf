@@ -10,13 +10,13 @@ module "vpn_gw" {
   resource_group_name = module.rg.name
 
   virtual_network_name = module.vnet.name
-  subnet_gateway_cidr  = "10.10.1.0/25"
+  subnet_cidr          = "10.10.1.0/25"
 
   vpn_connections = [
     {
       name                         = "azure_to_claranet"
       name_suffix                  = "claranet"
-      vpn_gw_custom_name           = "azure_to_claranet_vpn_connection"
+      custom_name                  = "azure_to_claranet_vpn_connection"
       local_gw_custom_name         = "azure_to_claranet_local_gateway"
       extra_tags                   = { to = "claranet" }
       local_gateway_address        = "89.185.1.1"
