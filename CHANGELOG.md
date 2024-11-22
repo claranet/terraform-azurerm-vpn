@@ -1,3 +1,37 @@
+## 8.0.0 (2024-11-22)
+
+### ⚠ BREAKING CHANGES
+
+* **AZ-1088:** AzureRM Provider v4+ and OpenTofu 1.8+
+
+### Features
+
+* **AZ-1088:** module v8 structure and updates 2197142
+
+### Code Refactoring
+
+* **AZ-1088:** apply suggestion(s) to file(s) 831c182
+
+### Miscellaneous Chores
+
+* **deps:** update dependency claranet/diagnostic-settings/azurerm to v7 5cc4386
+* **deps:** update dependency claranet/diagnostic-settings/azurerm to v8 fb05d91
+* **deps:** update dependency claranet/subnet/azurerm to v7.2.0 47d8ec8
+* **deps:** update dependency claranet/subnet/azurerm to v8 84b1063
+* **deps:** update dependency opentofu to v1.8.3 becdbcf
+* **deps:** update dependency opentofu to v1.8.4 3019e5d
+* **deps:** update dependency pre-commit to v4 804c890
+* **deps:** update dependency pre-commit to v4.0.1 33d49d3
+* **deps:** update dependency tflint to v0.54.0 35fe819
+* **deps:** update dependency trivy to v0.56.1 4a4082f
+* **deps:** update dependency trivy to v0.56.2 2e47817
+* **deps:** update dependency trivy to v0.57.1 0e5bf6f
+* **deps:** update pre-commit hook pre-commit/pre-commit-hooks to v5 f9ed987
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.1.0 438a447
+* **deps:** update tools 3b0ffd1
+* prepare for new examples structure b3de996
+* update examples structure c73c0c9
+
 ## 7.6.0 (2024-10-03)
 
 ### Features
