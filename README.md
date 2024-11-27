@@ -108,7 +108,7 @@ module "vpn_gw" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | active\_active | If true, an active-active Virtual Network Gateway will be created. An active-active gateway requires a `HighPerformance` or an `UltraPerformance` SKU. If false, an active-standby gateway will be created. | `bool` | `false` | no |
-| additional\_routes\_to\_advertise | Additional routes reserved for this virtual network in CIDR notation. | `list(string)` | `null` | no |
+| additional\_routes\_to\_advertise | Additional routes reserved for this virtual network in CIDR notation. | `list(string)` | `[]` | no |
 | bgp\_enabled | If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to `false`. | `bool` | `false` | no |
 | client\_name | Client name/account used in naming. | `string` | n/a | yes |
 | custom\_name | Custom VPN Gateway name, generated if not set. | `string` | `""` | no |
@@ -126,10 +126,10 @@ module "vpn_gw" {
 | name\_prefix | Optional prefix for the generated name. | `string` | `""` | no |
 | name\_suffix | Optional suffix for the generated name. | `string` | `""` | no |
 | network\_resource\_group\_name | VNet and subnet Resource Group name. To use only if you need to have a dedicated Resource Group for all VPN Gateway resources. (set via `resource_group_name` variable.) | `string` | `""` | no |
-| public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Dynamic"` | no |
+| public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Static"` | no |
 | public\_ip\_count | Number of Public IPs to allocate and associated to the Gateway. By default only 1. Maximum is 3. | `number` | `1` | no |
 | public\_ip\_custom\_names | List of VPN GW Public IP resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
-| public\_ip\_sku | The SKU of the public IP. Accepted values are `Basic` and `Standard`. | `string` | `"Basic"` | no |
+| public\_ip\_sku | The SKU of the public IP. Accepted values are `Basic` and `Standard`. | `string` | `"Standard"` | no |
 | public\_ip\_zones | Public IP zones to configure. | `list(number)` | <pre>[<br/>  1,<br/>  2,<br/>  3<br/>]</pre> | no |
 | resource\_group\_name | Name of the resource group. | `string` | n/a | yes |
 | routing\_type | The routing type of the Virtual Network Gateway. Valid options are `RouteBased` or `PolicyBased`. Defaults to `RouteBased`. | `string` | `"RouteBased"` | no |

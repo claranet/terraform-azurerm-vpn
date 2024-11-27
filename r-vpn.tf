@@ -57,7 +57,7 @@ resource "azurerm_virtual_network_gateway" "main" {
   }
 
   dynamic "custom_route" {
-    for_each = var.additional_routes_to_advertise[*]
+    for_each = length(var.additional_routes_to_advertise) > 0 ? [1] : []
 
     content {
       address_prefixes = var.additional_routes_to_advertise

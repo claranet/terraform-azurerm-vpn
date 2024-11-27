@@ -37,13 +37,13 @@ variable "public_ip_count" {
 variable "public_ip_allocation_method" {
   description = "Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`."
   type        = string
-  default     = "Dynamic"
+  default     = "Static"
 }
 
 variable "public_ip_sku" {
   description = "The SKU of the public IP. Accepted values are `Basic` and `Standard`."
   type        = string
-  default     = "Basic"
+  default     = "Standard"
 }
 
 variable "public_ip_zones" {
@@ -170,5 +170,6 @@ variable "vpn_client_configuration" {
 variable "additional_routes_to_advertise" {
   description = "Additional routes reserved for this virtual network in CIDR notation."
   type        = list(string)
-  default     = null
+  default     = []
+  nullable    = false
 }
