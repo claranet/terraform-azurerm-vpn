@@ -126,7 +126,7 @@ module "vpn_gw" {
 | name\_prefix | Optional prefix for the generated name. | `string` | `""` | no |
 | name\_suffix | Optional suffix for the generated name. | `string` | `""` | no |
 | network\_resource\_group\_name | VNet and subnet Resource Group name. To use only if you need to have a dedicated Resource Group for all VPN Gateway resources. (set via `resource_group_name` variable.) | `string` | `""` | no |
-| public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Dynamic"` | no |
+| public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Static"` | no |
 | public\_ip\_count | Number of Public IPs to allocate and associated to the Gateway. By default only 1. Maximum is 3. | `number` | `1` | no |
 | public\_ip\_custom\_names | List of VPN GW Public IP resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
 | public\_ip\_sku | The SKU of the public IP. Accepted values are `Basic` and `Standard`. | `string` | `"Standard"` | no |

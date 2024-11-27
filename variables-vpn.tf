@@ -37,7 +37,7 @@ variable "public_ip_count" {
 variable "public_ip_allocation_method" {
   description = "Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`."
   type        = string
-  default     = "Dynamic"
+  default     = "Static"
 }
 
 variable "public_ip_sku" {
