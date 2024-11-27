@@ -1,3 +1,15 @@
+## 8.0.1 (2024-11-27)
+
+### Bug Fixes
+
+* **AZ-1088:** default empty list for `additional_routes_to_advertise` variable 72a4d86
+* **AZ-1088:** default Public IP SKU should be `Standard` 1f90716
+* **AZ-1088:** public IP allocation method should be `Static` by default 4712182
+
+### Miscellaneous Chores
+
+* **deps:** update dependency opentofu to v1.8.6 fa09970
+
 ## 8.0.0 (2024-11-22)
 
 ### ⚠ BREAKING CHANGES
