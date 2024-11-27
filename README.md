@@ -108,7 +108,7 @@ module "vpn_gw" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | active\_active | If true, an active-active Virtual Network Gateway will be created. An active-active gateway requires a `HighPerformance` or an `UltraPerformance` SKU. If false, an active-standby gateway will be created. | `bool` | `false` | no |
-| additional\_routes\_to\_advertise | Additional routes reserved for this virtual network in CIDR notation. | `list(string)` | `null` | no |
+| additional\_routes\_to\_advertise | Additional routes reserved for this virtual network in CIDR notation. | `list(string)` | `[]` | no |
 | bgp\_enabled | If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to `false`. | `bool` | `false` | no |
 | client\_name | Client name/account used in naming. | `string` | n/a | yes |
 | custom\_name | Custom VPN Gateway name, generated if not set. | `string` | `""` | no |
