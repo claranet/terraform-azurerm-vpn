@@ -129,7 +129,7 @@ module "vpn_gw" {
 | public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Dynamic"` | no |
 | public\_ip\_count | Number of Public IPs to allocate and associated to the Gateway. By default only 1. Maximum is 3. | `number` | `1` | no |
 | public\_ip\_custom\_names | List of VPN GW Public IP resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
-| public\_ip\_sku | The SKU of the public IP. Accepted values are `Basic` and `Standard`. | `string` | `"Basic"` | no |
+| public\_ip\_sku | The SKU of the public IP. Accepted values are `Basic` and `Standard`. | `string` | `"Standard"` | no |
 | public\_ip\_zones | Public IP zones to configure. | `list(number)` | <pre>[<br/>  1,<br/>  2,<br/>  3<br/>]</pre> | no |
 | resource\_group\_name | Name of the resource group. | `string` | n/a | yes |
 | routing\_type | The routing type of the Virtual Network Gateway. Valid options are `RouteBased` or `PolicyBased`. Defaults to `RouteBased`. | `string` | `"RouteBased"` | no |

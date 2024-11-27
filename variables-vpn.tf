@@ -43,7 +43,7 @@ variable "public_ip_allocation_method" {
 variable "public_ip_sku" {
   description = "The SKU of the public IP. Accepted values are `Basic` and `Standard`."
   type        = string
-  default     = "Basic"
+  default     = "Standard"
 }
 
 variable "public_ip_zones" {
