@@ -50,7 +50,7 @@ resource "azurerm_virtual_network_gateway" "main" {
     for_each = [for x in range(1, local.public_ip_count + 1) : x]
 
     content {
-      name                 = try(var.ipconfig_custom_names[ip_configuration.key - 1], format("%s-0%s", local.vpn_gw_ipconfig_name, ip_configuration.key))
+      name                 = try(var.ipconfig_custom_names[ip_configuration.key], format("%s-0%s", local.vpn_gw_ipconfig_name, ip_configuration.key))
       public_ip_address_id = azurerm_public_ip.main[ip_configuration.key].id
       subnet_id            = var.subnet_cidr != null ? one(module.subnet_gateway[*].id) : var.subnet_id
     }
