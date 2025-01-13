@@ -47,12 +47,13 @@ resource "azurerm_virtual_network_gateway" "main" {
   sku           = var.sku
 
   dynamic "ip_configuration" {
-    for_each = [for x in range(1, local.public_ip_count + 1) : x]
-
+    for_each = [
+      for x in range(1, local.public_ip_count + 1) : x
+    ]
     content {
-      name                 = try(var.ipconfig_custom_names[ip_configuration.key], format("%s-0%s", local.vpn_gw_ipconfig_name, ip_configuration.key))
+      name                 = try(var.ipconfig_custom_names[ip_configuration.key], format("%s-%02s", local.vpn_gw_ipconfig_name, ip_configuration.value))
       public_ip_address_id = azurerm_public_ip.main[ip_configuration.key].id
-      subnet_id            = var.subnet_cidr != null ? one(module.subnet_gateway[*].id) : var.subnet_id
+      subnet_id            = coalesce(one(module.subnet_gateway[*].id), var.subnet_id)
     }
   }
 
