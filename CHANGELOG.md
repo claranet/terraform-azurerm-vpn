@@ -1,3 +1,28 @@
+## 8.1.0 (2025-01-24)
+
+### Features
+
+* **AZ-1502:** support nat rules creation 33b2952
+
+### Bug Fixes
+
+* **AZ-1492:** `ipconfig_custom_names` not taken into account 9d9c840
+* **AZ-1502:** fix validation regex c3310c4
+
+### Miscellaneous Chores
+
+* **AZ-1088:** apply suggestions 9ff4d0b
+* **deps:** update dependency opentofu to v1.8.8 e972cd0
+* **deps:** update dependency opentofu to v1.9.0 3223db9
+* **deps:** update dependency pre-commit to v4.1.0 9d4f0c5
+* **deps:** update dependency tflint to v0.55.0 fbdeeca
+* **deps:** update dependency trivy to v0.58.1 a2c85b4
+* **deps:** update dependency trivy to v0.58.2 0cf882f
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.19.0 3ef6637
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.20.0 6708e91
+* **deps:** update tools 49f9b36
+* update tflint config for v0.55.0 9fcb399
+
 ## 8.0.1 (2024-11-27)
 
 ### Bug Fixes
