@@ -189,8 +189,8 @@ resource "azurerm_virtual_network_gateway_connection" "main" {
     }
   }
 
-  egress_nat_rule_ids  = each.value.egress_nat_rule_ids
-  ingress_nat_rule_ids = each.value.ingress_nat_rule_ids
+  egress_nat_rule_ids  = [for rule_name in each.value.egress_nat_rule_names : azurerm_virtual_network_gateway_nat_rule.main[rule_name].id if var.nat_rules[rule_name].mode == "EgressSnat"]
+  ingress_nat_rule_ids = [for rule_name in each.value.ingress_nat_rule_names : azurerm_virtual_network_gateway_nat_rule.main[rule_name].id if var.nat_rules[rule_name].mode == "IngressSnat"]
 }
 
 moved {

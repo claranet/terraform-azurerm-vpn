@@ -126,8 +126,8 @@ variable "vpn_connections" {
       remote_address_cidrs = list(string)
     })), [])
 
-    egress_nat_rule_ids  = optional(list(string))
-    ingress_nat_rule_ids = optional(list(string))
+    egress_nat_rule_names  = optional(list(string), [])
+    ingress_nat_rule_names = optional(list(string), [])
 
     ipsec_policy = optional(object({
       dh_group         = string
@@ -172,4 +172,32 @@ variable "additional_routes_to_advertise" {
   type        = list(string)
   default     = []
   nullable    = false
+}
+
+variable "nat_rules" {
+  description = "Map of NAT rules to apply to the VPN Gateway."
+  type = map(object({
+    external_mapping = list(object({
+      address_space = string
+      port_range    = optional(string)
+    }))
+    internal_mapping = list(object({
+      address_space = string
+      port_range    = optional(string)
+    }))
+    mode = string
+    type = optional(string, "Static")
+    })
+  )
+  default  = {}
+  nullable = false
+  validation {
+    condition     = alltrue([for rule in var.nat_rules : (rule.mode == "IngressSnat" || rule.mode == "EgressSnat")])
+    error_message = "Each NAT rule must use either 'IngressSnat' or 'EgressSnat' for the mode."
+  }
+
+  validation {
+    condition     = alltrue([for rule in var.nat_rules : (rule.type == "Static" || rule.type == "Dynamic")])
+    error_message = "Each NAT rule must use either 'Static' or 'Dynamic' for the type."
+  }
 }
