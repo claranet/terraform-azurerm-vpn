@@ -24,7 +24,7 @@ resource "azurerm_virtual_network_gateway_nat_rule" "main" {
 
   lifecycle {
     precondition {
-      condition     = can(regex("VpnGW[2-5](AZ)?", var.sku))
+      condition     = can(regex("VpnGw[2-5](AZ)?", var.sku))
       error_message = "Nat rules are supported only on the following Gateway SKUs: VpnGw2~5, VpnGw2AZ~5AZ."
     }
   }
