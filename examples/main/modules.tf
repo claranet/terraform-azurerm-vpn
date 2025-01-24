@@ -12,6 +12,21 @@ module "vpn_gw" {
   virtual_network_name = module.vnet.name
   subnet_cidr          = "10.10.1.0/25"
 
+  nat_rules = {
+    OnPremToAzure = {
+      external_mapping = [
+        {
+          address_space = "172.16.0.0/16"
+      }]
+      internal_mapping = [
+        {
+          address_space = "10.16.0.0/16"
+      }]
+      mode = "IngressSnat"
+      type = "Static"
+
+    }
+  }
   vpn_connections = [
     {
       name                         = "azure_to_claranet"
@@ -21,6 +36,8 @@ module "vpn_gw" {
       extra_tags                   = { to = "claranet" }
       local_gateway_address        = "89.185.1.1"
       local_gateway_address_spaces = ["89.185.1.1/32"]
+
+      ingress_nat_rule_names = ["OnPremToAzure"]
     }
   ]
 

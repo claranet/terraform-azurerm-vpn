@@ -51,6 +51,21 @@ module "vpn_gw" {
   virtual_network_name = module.vnet.name
   subnet_cidr          = "10.10.1.0/25"
 
+  nat_rules = {
+    OnPremToAzure = {
+      external_mapping = [
+        {
+          address_space = "172.16.0.0/16"
+      }]
+      internal_mapping = [
+        {
+          address_space = "10.16.0.0/16"
+      }]
+      mode = "IngressSnat"
+      type = "Static"
+
+    }
+  }
   vpn_connections = [
     {
       name                         = "azure_to_claranet"
@@ -60,6 +75,8 @@ module "vpn_gw" {
       extra_tags                   = { to = "claranet" }
       local_gateway_address        = "89.185.1.1"
       local_gateway_address_spaces = ["89.185.1.1/32"]
+
+      ingress_nat_rule_names = ["OnPremToAzure"]
     }
   ]
 
@@ -97,6 +114,7 @@ module "vpn_gw" {
 | [azurerm_public_ip.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 | [azurerm_virtual_network_gateway.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway) | resource |
 | [azurerm_virtual_network_gateway_connection.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway_connection) | resource |
+| [azurerm_virtual_network_gateway_nat_rule.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway_nat_rule) | resource |
 | [random_password.main](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [azurecaf_name.gw_pub_ip](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
 | [azurecaf_name.local_network_gateway](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
@@ -125,6 +143,7 @@ module "vpn_gw" {
 | logs\_metrics\_categories | Metrics categories to send to destinations. | `list(string)` | `null` | no |
 | name\_prefix | Optional prefix for the generated name. | `string` | `""` | no |
 | name\_suffix | Optional suffix for the generated name. | `string` | `""` | no |
+| nat\_rules | Map of NAT rules to apply to the VPN Gateway. | <pre>map(object({<br/>    external_mapping = list(object({<br/>      address_space = string<br/>      port_range    = optional(string)<br/>    }))<br/>    internal_mapping = list(object({<br/>      address_space = string<br/>      port_range    = optional(string)<br/>    }))<br/>    mode = string<br/>    type = optional(string, "Static")<br/>    })<br/>  )</pre> | `{}` | no |
 | network\_resource\_group\_name | VNet and subnet Resource Group name. To use only if you need to have a dedicated Resource Group for all VPN Gateway resources. (set via `resource_group_name` variable.) | `string` | `""` | no |
 | public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Static"` | no |
 | public\_ip\_count | Number of Public IPs to allocate and associated to the Gateway. By default only 1. Maximum is 3. | `number` | `1` | no |
@@ -140,7 +159,7 @@ module "vpn_gw" {
 | type | The type of the Virtual Network Gateway. Valid options are `Vpn` or `ExpressRoute`. Changing the type forces a new resource to be created. | `string` | `"Vpn"` | no |
 | virtual\_network\_name | Virtual Network Name where the dedicated VPN subnet and Gateway will be created. | `string` | n/a | yes |
 | vpn\_client\_configuration | VPN client configuration authorizations. | <pre>object({<br/>    address_space  = list(string)     # The address space out of which IP addresses for vpn clients will be taken<br/>    entra_tenant   = optional(string) # Entra (aka AzureAD) Tenant URL<br/>    entra_audience = optional(string) # The client id of the Azure VPN application<br/>    entra_issuer   = optional(string) # The STS url for your tenant<br/>    root_certificate = optional(list(object({<br/>      name             = string<br/>      public_cert_data = string<br/>    })), [])<br/>    revoked_certificate = optional(list(object({<br/>      name             = string<br/>      public_cert_data = string<br/>    })), [])<br/>    radius_server_address = optional(string)<br/>    radius_server_secret  = optional(string)<br/>    vpn_auth_types        = optional(list(string), ["AAD"])<br/>    vpn_client_protocols  = optional(list(string), ["OpenVPN"])<br/>  })</pre> | `null` | no |
-| vpn\_connections | List of VPN connection configurations. | <pre>list(object({<br/>    name       = string<br/>    extra_tags = optional(map(string))<br/><br/>    name_suffix          = optional(string)<br/>    local_gw_custom_name = optional(string) # Generated if not set<br/>    vpn_gw_custom_name   = optional(string) # Generated if not set<br/><br/>    local_gateway_address          = optional(string)<br/>    local_gateway_fqdn             = optional(string)<br/>    local_gateway_address_spaces   = optional(list(string), []) # CIDR Format<br/>    local_azure_ip_address_enabled = optional(bool, false)<br/><br/>    shared_key = optional(string) # Generated if not set<br/><br/>    connection_mode     = optional(string, "Default")<br/>    connection_protocol = optional(string, "IKEv2")<br/>    dpd_timeout_seconds = optional(number, 45)<br/><br/>    enable_bgp = optional(bool, false)<br/>    custom_bgp_addresses = optional(object({<br/>      primary   = string<br/>      secondary = string<br/>    }))<br/><br/>    use_policy_based_traffic_selectors = optional(bool, false)<br/>    traffic_selector_policy = optional(list(object({<br/>      local_address_cidrs  = list(string)<br/>      remote_address_cidrs = list(string)<br/>    })), [])<br/><br/>    egress_nat_rule_ids  = optional(list(string))<br/>    ingress_nat_rule_ids = optional(list(string))<br/><br/>    ipsec_policy = optional(object({<br/>      dh_group         = string<br/>      ike_encryption   = string<br/>      ike_integrity    = string<br/>      ipsec_encryption = string<br/>      ipsec_integrity  = string<br/>      pfs_group        = string<br/><br/>      sa_datasize = optional(number)<br/>      sa_lifetime = optional(number)<br/>    }))<br/>  }))</pre> | `[]` | no |
+| vpn\_connections | List of VPN connection configurations. | <pre>list(object({<br/>    name       = string<br/>    extra_tags = optional(map(string))<br/><br/>    name_suffix          = optional(string)<br/>    local_gw_custom_name = optional(string) # Generated if not set<br/>    vpn_gw_custom_name   = optional(string) # Generated if not set<br/><br/>    local_gateway_address          = optional(string)<br/>    local_gateway_fqdn             = optional(string)<br/>    local_gateway_address_spaces   = optional(list(string), []) # CIDR Format<br/>    local_azure_ip_address_enabled = optional(bool, false)<br/><br/>    shared_key = optional(string) # Generated if not set<br/><br/>    connection_mode     = optional(string, "Default")<br/>    connection_protocol = optional(string, "IKEv2")<br/>    dpd_timeout_seconds = optional(number, 45)<br/><br/>    enable_bgp = optional(bool, false)<br/>    custom_bgp_addresses = optional(object({<br/>      primary   = string<br/>      secondary = string<br/>    }))<br/><br/>    use_policy_based_traffic_selectors = optional(bool, false)<br/>    traffic_selector_policy = optional(list(object({<br/>      local_address_cidrs  = list(string)<br/>      remote_address_cidrs = list(string)<br/>    })), [])<br/><br/>    egress_nat_rule_names  = optional(list(string), [])<br/>    ingress_nat_rule_names = optional(list(string), [])<br/><br/>    ipsec_policy = optional(object({<br/>      dh_group         = string<br/>      ike_encryption   = string<br/>      ike_integrity    = string<br/>      ipsec_encryption = string<br/>      ipsec_integrity  = string<br/>      pfs_group        = string<br/><br/>      sa_datasize = optional(number)<br/>      sa_lifetime = optional(number)<br/>    }))<br/>  }))</pre> | `[]` | no |
 
 ## Outputs
 
