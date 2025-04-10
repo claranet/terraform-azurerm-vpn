@@ -71,9 +71,9 @@ resource "azurerm_virtual_network_gateway" "main" {
 
     content {
       address_space = vpn.value.address_space
-      aad_tenant    = vpn.value.aad_tenant
-      aad_audience  = vpn.value.aad_audience
-      aad_issuer    = vpn.value.aad_issuer
+      aad_tenant    = vpn.value.entra_tenant
+      aad_audience  = vpn.value.entra_audience
+      aad_issuer    = vpn.value.entra_issuer
 
       dynamic "root_certificate" {
         for_each = vpn.value.root_certificate
