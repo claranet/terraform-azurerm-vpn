@@ -1,3 +1,22 @@
+## 8.1.1 (2025-04-11)
+
+### Bug Fixes
+
+* use Entra vars naming 2329d0d
+
+### Miscellaneous Chores
+
+* **deps:** update dependency pre-commit to v4.2.0 f4e6f8e
+* **deps:** update dependency terraform-docs to v0.20.0 7076ca9
+* **deps:** update dependency trivy to v0.59.1 840f4c5
+* **deps:** update dependency trivy to v0.60.0 1ccc564
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.21.0 1175492
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.22.0 1f7fda0
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.2.0 c1ad2d4
+* **deps:** update tools 79f2523
+* **deps:** update tools 077e6bd
+* update Github templates 911f3eb
+
 ## 8.1.0 (2025-01-24)
 
 ### Features
