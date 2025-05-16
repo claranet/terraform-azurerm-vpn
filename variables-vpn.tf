@@ -32,6 +32,10 @@ variable "public_ip_count" {
     condition     = var.public_ip_count >= 1 && var.public_ip_count <= 3
     error_message = "Only one, two or three IPs can be associated to the Gateway."
   }
+  validation {
+    condition     = var.public_ip_count == 2 && var.active_active
+    error_message = "Active active configuration requires exactly two IP Addresses."
+  }
 }
 
 variable "public_ip_allocation_method" {
