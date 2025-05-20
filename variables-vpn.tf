@@ -125,7 +125,7 @@ variable "vpn_connections" {
     enable_bgp = optional(bool, false)
     custom_bgp_addresses = optional(object({
       primary   = string
-      secondary = optional(string)
+      secondary = string
     }))
 
     use_policy_based_traffic_selectors = optional(bool, false)
