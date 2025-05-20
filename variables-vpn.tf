@@ -111,6 +111,10 @@ variable "vpn_connections" {
     local_gateway_fqdn             = optional(string)
     local_gateway_address_spaces   = optional(list(string), []) # CIDR Format
     local_azure_ip_address_enabled = optional(bool, false)
+    local_gateway_bgp_settings = optional(object({
+      asn                 = number
+      bgp_peering_address = string
+    }))
 
     shared_key = optional(string) # Generated if not set
 
@@ -121,7 +125,7 @@ variable "vpn_connections" {
     enable_bgp = optional(bool, false)
     custom_bgp_addresses = optional(object({
       primary   = string
-      secondary = string
+      secondary = optional(string)
     }))
 
     use_policy_based_traffic_selectors = optional(bool, false)
