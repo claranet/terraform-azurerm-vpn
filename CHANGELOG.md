@@ -1,3 +1,23 @@
+## 8.2.0 (2025-05-23)
+
+### Features
+
+* **AZ-1559:** 🚀 add BGP settings support for VPN connections 1c19e79
+
+### Bug Fixes
+
+* **AZ-1556:** 🐛 add validation for active-active configuration 859ca9a
+* **AZ-1559:** 🐛 correct type for `secondary` BGP address to required 74ec1b6
+
+### Miscellaneous Chores
+
+* **AZ-1556:** 🔧 update Terraform minimum version to 1.9 4b7d27a
+* **deps:** update dependency opentofu to v1.9.1 f1c060b
+* **deps:** update dependency tflint to v0.57.0 eedf5f2
+* **deps:** update dependency trivy to v0.61.1 1a2bf9a
+* **deps:** update dependency trivy to v0.62.0 bcbd7e1
+* **deps:** update dependency trivy to v0.62.1 04aba6a
+
 ## 8.1.1 (2025-04-11)
 
 ### Bug Fixes
