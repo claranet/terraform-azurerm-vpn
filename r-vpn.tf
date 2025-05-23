@@ -125,6 +125,14 @@ resource "azurerm_local_network_gateway" "main" {
   gateway_fqdn    = each.value.local_gateway_fqdn
   address_space   = each.value.local_gateway_address_spaces
 
+  dynamic "bgp_settings" {
+    for_each = each.value.local_gateway_bgp_settings[*]
+    content {
+      asn                 = bgp_settings.value.asn
+      bgp_peering_address = bgp_settings.value.bgp_peering_address
+    }
+  }
+
   tags = merge(local.default_tags, var.extra_tags, each.value.extra_tags)
 }
 
