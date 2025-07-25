@@ -33,8 +33,12 @@ variable "public_ip_count" {
     error_message = "Only one, two or three IPs can be associated to the Gateway."
   }
   validation {
-    condition     = var.public_ip_count == 2 && var.active_active
+    condition     = !var.active_active || var.vpn_client_configuration != null || var.public_ip_count == 2
     error_message = "Active active configuration requires exactly two IP Addresses."
+  }
+  validation {
+    condition     = !var.active_active || var.vpn_client_configuration == null || var.public_ip_count == 3
+    error_message = "Active active configuration with P2S Connections requires exactly three IP Addresses."
   }
 }
 
