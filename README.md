@@ -145,6 +145,7 @@ module "vpn_gw" {
 | name\_suffix | Optional suffix for the generated name. | `string` | `""` | no |
 | nat\_rules | Map of NAT rules to apply to the VPN Gateway. | <pre>map(object({<br/>    external_mapping = list(object({<br/>      address_space = string<br/>      port_range    = optional(string)<br/>    }))<br/>    internal_mapping = list(object({<br/>      address_space = string<br/>      port_range    = optional(string)<br/>    }))<br/>    mode = string<br/>    type = optional(string, "Static")<br/>    })<br/>  )</pre> | `{}` | no |
 | network\_resource\_group\_name | VNet and subnet Resource Group name. To use only if you need to have a dedicated Resource Group for all VPN Gateway resources. (set via `resource_group_name` variable.) | `string` | `""` | no |
+| private\_ip\_address\_enabled | Whether the Virtual Network Gateway should have a private IP address. Defaults to `false`. If set to `true`, the gateway will have a private IP address. | `bool` | `false` | no |
 | public\_ip\_allocation\_method | Defines the allocation method for this IP address. Possible values are `Static` or `Dynamic`. | `string` | `"Static"` | no |
 | public\_ip\_count | Number of Public IPs to allocate and associated to the Gateway. By default only 1. Maximum is 3. | `number` | `1` | no |
 | public\_ip\_custom\_names | List of VPN GW Public IP resource custom name. One per IP on the gateway. | `list(string)` | `[]` | no |
