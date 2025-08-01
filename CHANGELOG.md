@@ -1,3 +1,27 @@
+## 8.3.0 (2025-08-01)
+
+### Features
+
+* **AZ-1597:** 🚀 add support for private IP address in VPN Gateway 7287a3c
+
+### Bug Fixes
+
+* **AZ-1593:** 🐛 improve validation for active-active configuration 2e551c8
+
+### Miscellaneous Chores
+
+* **⚙️:** ✏️ update template identifier for MR review b0cf314
+* 🗑️ remove old commitlint configuration files 7b15c7b
+* **AZ-1593:** apply suggestions e2a8125
+* **deps:** update dependency opentofu to v1.10.0 b60906b
+* **deps:** update dependency opentofu to v1.10.1 6c4be3c
+* **deps:** update dependency opentofu to v1.10.3 4aab015
+* **deps:** update dependency tflint to v0.58.0 b7bd774
+* **deps:** update dependency tflint to v0.58.1 3d0d6ba
+* **deps:** update dependency trivy to v0.63.0 a04d7e0
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.2.1 798ea89
+* **deps:** update tools 662c69d
+
 ## 8.2.0 (2025-05-23)
 
 ### Features
