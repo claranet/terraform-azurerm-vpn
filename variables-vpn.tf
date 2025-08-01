@@ -60,6 +60,12 @@ variable "public_ip_zones" {
   default     = [1, 2, 3]
 }
 
+variable "private_ip_address_enabled" {
+  description = "Whether the Virtual Network Gateway should have a private IP address. Defaults to `false`. If set to `true`, the gateway will have a private IP address."
+  type        = bool
+  default     = false
+}
+
 variable "type" {
   description = "The type of the Virtual Network Gateway. Valid options are `Vpn` or `ExpressRoute`. Changing the type forces a new resource to be created."
   type        = string

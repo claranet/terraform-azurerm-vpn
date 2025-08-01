@@ -41,10 +41,11 @@ resource "azurerm_virtual_network_gateway" "main" {
   type     = var.type
   vpn_type = var.routing_type
 
-  active_active = var.active_active
-  enable_bgp    = var.bgp_enabled
-  generation    = var.gateway_generation
-  sku           = var.sku
+  private_ip_address_enabled = var.private_ip_address_enabled
+  active_active              = var.active_active
+  enable_bgp                 = var.bgp_enabled
+  generation                 = var.gateway_generation
+  sku                        = var.sku
 
   dynamic "ip_configuration" {
     for_each = [
