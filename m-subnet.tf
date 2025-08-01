@@ -5,7 +5,7 @@ moved {
 
 module "subnet_gateway" {
   source  = "claranet/subnet/azurerm"
-  version = "~> 8.0.0"
+  version = "~> 8.1.0"
 
   count = var.subnet_cidr != null ? 1 : 0
 
