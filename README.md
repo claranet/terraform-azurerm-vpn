@@ -96,7 +96,7 @@ module "vpn_gw" {
 | Name | Version |
 |------|---------|
 | azurecaf | ~> 1.2.28 |
-| azurerm | ~> 4.0 |
+| azurerm | ~> 4.31 |
 | random | ~> 3.0 |
 
 ## Modules
