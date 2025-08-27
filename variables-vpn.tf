@@ -193,7 +193,7 @@ variable "additional_routes_to_advertise" {
 }
 
 variable "nat_rules" {
-  description = "Map of NAT rules to apply to the VPN Gateway."
+  description = "Map of NAT rules to apply to the VPN Gateway. For dynamic NAT rules, if `ip_configuration_name` is not set, the first IP configuration will be used."
   type = map(object({
     external_mapping = list(object({
       address_space = string
@@ -203,8 +203,9 @@ variable "nat_rules" {
       address_space = string
       port_range    = optional(string)
     }))
-    mode = string
-    type = optional(string, "Static")
+    mode                  = string
+    type                  = optional(string, "Static")
+    ip_configuration_name = optional(string)
     })
   )
   default  = {}
