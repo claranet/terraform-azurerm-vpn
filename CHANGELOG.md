@@ -1,3 +1,18 @@
+## 8.4.0 (2025-08-29)
+
+### Features
+
+* **AZ-1608:** ✨  add support of ip_configuration_name parameter for NAT rules resource 5aa74a4
+
+### Miscellaneous Chores
+
+* **deps:** 🔗 bump AzureRM provider version to v4.31+ 8d67a51
+* **deps:** update dependency claranet/diagnostic-settings/azurerm to ~> 8.1.0 4d93f39
+* **deps:** update dependency claranet/subnet/azurerm to ~> 8.1.0 5e67b3c
+* **deps:** update pre-commit hook pre-commit/pre-commit-hooks to v6 4d5bf88
+* **deps:** update tools 6a7c5e4
+* **deps:** update tools ff9b00c
+
 ## 8.3.0 (2025-08-01)
 
 ### Features
