@@ -1,10 +1,16 @@
 resource "azurerm_virtual_network_gateway_nat_rule" "main" {
-  for_each                   = var.nat_rules
+  for_each = var.nat_rules
+
   name                       = each.key
   resource_group_name        = var.resource_group_name
   virtual_network_gateway_id = azurerm_virtual_network_gateway.main.id
-  mode                       = each.value.mode
-  type                       = each.value.type
+
+  mode = each.value.mode
+  type = each.value.type
+  ip_configuration_id = lower(each.value.type) == "dynamic" ? format("%s/ipConfigurations/%s",
+    azurerm_virtual_network_gateway.main.id,
+    coalesce(each.value.ip_configuration_name, azurerm_virtual_network_gateway.main.ip_configuration[0].name),
+  ) : null
 
   dynamic "external_mapping" {
     for_each = each.value.external_mapping[*]
