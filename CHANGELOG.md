@@ -1,3 +1,25 @@
+## 8.4.2 (2025-12-19)
+
+### Bug Fixes
+
+* **AZ-1625:** 🐛 improve validation for active-active configuration in VPN 83ccc8c
+
+### Miscellaneous Chores
+
+* **deps:** update dependency opentofu to v1.10.7 85a675c
+* **deps:** update dependency opentofu to v1.11.1 9abf697
+* **deps:** update dependency pre-commit to v4.4.0 018ff24
+* **deps:** update dependency pre-commit to v4.5.0 f80a64f
+* **deps:** update dependency pre-commit to v4.5.1 994f92d
+* **deps:** update dependency terraform-docs to v0.21.0 5f17eb3
+* **deps:** update dependency tflint to v0.60.0 f97369d
+* **deps:** update dependency trivy to v0.67.1 f5a46a4
+* **deps:** update dependency trivy to v0.67.2 6a92adf
+* **deps:** update dependency trivy to v0.68.1 f14dd7a
+* **deps:** update dependency trivy to v0.68.2 df816d5
+* **deps:** update pre-commit hook crate-ci/committed to v1.1.8 8e79aa4
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.2.2 e4bcc0a
+
 ## 8.4.1 (2025-10-01)
 
 ### Code Refactoring
