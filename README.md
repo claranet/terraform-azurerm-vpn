@@ -94,7 +94,7 @@ module "vpn_gw" {
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | azurecaf | >= 1.2.28 |
 | azurerm | ~> 4.31 |
 | random | ~> 3.0 |
@@ -102,14 +102,14 @@ module "vpn_gw" {
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | diagnostics | claranet/diagnostic-settings/azurerm | ~> 8.2.0 |
 | subnet\_gateway | claranet/subnet/azurerm | ~> 8.1.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azurerm_local_network_gateway.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/local_network_gateway) | resource |
 | [azurerm_public_ip.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 | [azurerm_virtual_network_gateway.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway) | resource |
@@ -124,7 +124,7 @@ module "vpn_gw" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | active\_active | If true, an active-active Virtual Network Gateway will be created. An active-active gateway requires a `HighPerformance` or an `UltraPerformance` SKU. If false, an active-standby gateway will be created. | `bool` | `false` | no |
 | additional\_routes\_to\_advertise | Additional routes reserved for this virtual network in CIDR notation. | `list(string)` | `[]` | no |
 | bgp\_enabled | If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to `false`. | `bool` | `false` | no |
@@ -165,7 +165,7 @@ module "vpn_gw" {
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | id | VPN Gateway ID. |
 | local\_gateway\_ids | Azure VNET local Gateway IDs. |
 | local\_gateway\_names | Azure VNET local Gateway names. |
