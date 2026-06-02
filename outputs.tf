@@ -1,6 +1,7 @@
 output "resource" {
   description = "VPN Gateway resource object."
   value       = azurerm_virtual_network_gateway.main
+  sensitive   = true
 }
 
 output "id" {
@@ -36,6 +37,7 @@ output "public_ip_adresses" {
 output "resource_public_ip" {
   description = "Azure VPN Gateway Public IP resource object."
   value       = azurerm_public_ip.main
+  sensitive   = true
 }
 
 output "local_gateway_names" {
