@@ -43,7 +43,7 @@ resource "azurerm_virtual_network_gateway" "main" {
 
   private_ip_address_enabled = var.private_ip_address_enabled
   active_active              = var.active_active
-  enable_bgp                 = var.bgp_enabled
+  bgp_enabled                = var.bgp_enabled
   generation                 = var.gateway_generation
   sku                        = var.sku
 
@@ -160,7 +160,7 @@ resource "azurerm_virtual_network_gateway_connection" "main" {
   connection_protocol = each.value.connection_protocol
   dpd_timeout_seconds = each.value.dpd_timeout_seconds
 
-  enable_bgp = each.value.enable_bgp
+  bgp_enabled = each.value.enable_bgp
 
   dynamic "custom_bgp_addresses" {
     for_each = each.value.custom_bgp_addresses[*]
